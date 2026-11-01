@@ -81,6 +81,10 @@ def main():
 
     print("Preparing training and test data...")
     X_train, X_test, y_train, y_test = prepare_data(df)
+    X_test.to_csv(
+        PROJECT_ROOT / "test_data.csv",
+        index=False
+    )
 
     print(f"Training samples: {len(X_train)}")
     print(f"Testing samples: {len(X_test)}")
