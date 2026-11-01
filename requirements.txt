@@ -7,4 +7,4 @@ jupyter
 ipykernel
 joblib
 streamlit
-xlrd
+python-calamine
