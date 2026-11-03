@@ -172,7 +172,7 @@ The application loads the saved model pipelines from the `models/` directory. It
 
 The target column is optional for generating predictions, but it is required to calculate evaluation metrics and display the confusion matrix and classification report.
 
-The repository's `test_data.csv` contains the held-out test features without target labels. It can be used to generate predictions. To calculate evaluation metrics through the application, upload a labelled test CSV that includes the `default payment next month` column.
+The repository's `test_data.csv` contains the held-out test features along with their actual target labels. It can be uploaded to the Streamlit application to generate predictions and calculate evaluation metrics, including the confusion matrix and classification report.
 
 ## 11. Repository Structure
 
