@@ -4,7 +4,8 @@ from pathlib import Path
 
 from src.preprocessing import (
     separate_features_target,
-    split_dataset
+    split_dataset,
+    TARGET_COLUMN
 )
 
 from src.evaluation import evaluate_model
@@ -81,10 +82,10 @@ def main():
 
     print("Preparing training and test data...")
     X_train, X_test, y_train, y_test = prepare_data(df)
-    X_test.to_csv(
-        PROJECT_ROOT / "test_data.csv",
-        index=False
-    )
+    test_data = X_test.copy()
+    test_data[TARGET_COLUMN] = y_test.values
+
+    test_data.to_csv(PROJECT_ROOT / "test_data.csv", index=False)
 
     print(f"Training samples: {len(X_train)}")
     print(f"Testing samples: {len(X_test)}")

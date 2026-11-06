@@ -114,6 +114,22 @@ st.markdown(
     div[data-testid="stMetricValue"] {
         color: #F8FAFC;
     }
+    
+    .stMarkdown p {
+    color: #FFFFFF !important;
+    }
+    
+
+    [data-testid="stFileUploader"] label,
+    [data-testid="stFileUploader"] label p {
+    color: #FFFFFF !important;
+    }
+    
+    .stSelectbox label,
+    .stSelectbox label p {
+    color: #FFFFFF !important;
+    }
+
     </style>
     """,
     unsafe_allow_html=True
@@ -437,7 +453,6 @@ try:
                 "The target column must contain only 0 and 1."
             )
             st.stop()
-
         y_true = y_true.astype(int).to_numpy()
 
         st.success(
