@@ -1,7 +1,8 @@
 # Credit Card Default Prediction Using Machine Learning
 
-A binary classification project that predicts whether a credit card customer is likely to default on their next month's payment. The project implements five machine learning algorithms, compares their performance using six evaluation metrics, and provides an interactive Streamlit application for generating predictions and evaluating model results.
-
+Binary Classification Project predicting whether a credit card user will default on their payment in the coming month. This project
+uses five machine learning models, evaluates their performances using six different metrics, and gives an interactive Streamlit app
+to make predictions.
 ## Project Links
 
 - **GitHub Repository:** https://github.com/AriniRSM/BITS-MTech-AIML-ML-Assignment-2
@@ -10,9 +11,11 @@ A binary classification project that predicts whether a credit card customer is 
 
 ## 1. Problem Statement
 
-The objective is to develop and evaluate five supervised machine learning classification algorithms to predict whether a credit card customer will default on their next payment.
-
-The prediction is based on customer demographic information, credit limit, repayment status, bill statement amounts, and previous payment amounts. The project compares different classification approaches and examines their ability to identify customers belonging to the default class.
+The objective of the project is to design and compare the performance of supervised learning methods that are used to predict if
+there will be default payment by the credit card customer in the next month. It is a binary classification problem where the target
+variable “default payment next month” has the following classes: 0 – the customer did not make default in the next month. 1 – the
+customer made default in the next month. In this project, the comparison of the five different classifiers is performed using various
+evaluation metrics.
 
 ## 2. Dataset Description
 
@@ -42,9 +45,10 @@ The target classes are imbalanced. Consequently, accuracy alone is not sufficien
 
 ## 3. Exploratory Data Analysis
 
-Exploratory data analysis is documented in `notebooks/eda.ipynb`. The notebook examines the dataset, feature distributions, target-class distribution, and relationships between customer attributes and default status.
+Exploratory data analysis is presented in `notebooks/eda.ipynb`. It covers the following: data overview, feature distributions,
+distribution of target class, and correlation between customer features and defaults.
 
-Model evaluation and analysis are documented separately in `notebooks/model_analysis.ipynb`.
+Model evaluation and analysis are presented in `notebooks/model_analysis.ipynb`.
 
 ## 4. Data Preprocessing
 
@@ -117,6 +121,17 @@ The results below are from the held-out test set containing 6,000 observations. 
 
 ## 8. Model-wise Observations
 
+### Model Performance Observations
+
+| ML Model Name | Observation about Model Performance |
+|---|---|
+| **Logistic Regression** | Achieved the highest Accuracy (0.8088), AUC (0.7100), Precision (0.6923), and MCC (0.3302). However, its Recall (0.2442) for the Default class is relatively low, indicating that it misses many actual defaulters. |
+| **Decision Tree** | Achieved an Accuracy of 0.7153 and Recall of 0.3956. Its overall performance was moderate, with an F1 Score of 0.3807 and MCC of 0.1965. |
+| **K-Nearest Neighbors (KNN)** | Achieved the highest F1 Score (0.4361) for the Default class, with Precision of 0.5561 and Recall of 0.3587. It provides the best balance between Precision and Recall among the evaluated models, based on F1 Score. |
+| **Gaussian Naive Bayes** | Achieved the highest Recall (0.8161) for the Default class. However, its Precision (0.2495) and Accuracy (0.4163) were low, indicating a high number of false-positive predictions. |
+| **Support Vector Machine (SVM)** | Achieved an Accuracy of 0.8080 and Precision of 0.6834, performing similarly to Logistic Regression. However, its Default-class Recall (0.2457) was relatively low. |
+| **Overall Winner for the Dataset** | No single model performs best across all metrics. KNN achieved the highest Default-class F1 Score (0.4361), while Logistic Regression achieved the highest Accuracy, AUC, Precision, and MCC. KNN is the preferred model when Default-class F1 Score is the selection priority. |
+
 ### Logistic Regression
 
 Logistic Regression achieved the highest accuracy, AUC, precision, and MCC among the five models. Its default-class precision was 0.6923, but its recall was 0.2442. This means that although its positive predictions were comparatively reliable, it missed many actual defaulters.
@@ -139,15 +154,18 @@ SVM achieved an accuracy of 0.8080 and default-class precision of 0.6834. Its re
 
 ## 9. Overall Analysis
 
-No single model performed best across all evaluation metrics.
+There was no one model that performed best based on all evaluation metrics.
+The logistic regression model performed best in terms of accuracy, AUC, precision, and MCC. But from its low recall score, we know
+that it doesn’t find a large number of actual defaulters.
 
-Logistic Regression delivered the strongest results in accuracy, AUC, precision, and MCC. However, its low recall shows that it does not identify a large proportion of actual defaulters.
+KNN performed best in terms of F1 Score for the default class, meaning it is balanced in terms of precision and recall compared to
+others. Gaussian Naive Bayes found the largest number of actual defaulters, but at the same time generated a lot of false positives.
+In the case of using the model for credit risk applications, we have to make sure that the model will not ignore a large number of
+actual defaulters and classify a non-defaulter as a defaulter. We should look at the trade-off between precision and recall and not
+only focus on accuracy.
 
-KNN achieved the highest F1 Score for the default class, indicating a comparatively better balance between precision and recall. Gaussian Naive Bayes identified the largest proportion of actual defaulters, but it also produced many false positives.
-
-For a credit-risk application, the choice of model depends on the relative cost of missing an actual defaulter and incorrectly flagging a non-defaulter. Therefore, model selection should consider the precision-recall trade-off rather than accuracy alone.
-
-Based on these results, KNN has the best default-class F1 Score among the evaluated models, while Logistic Regression leads on several other evaluation metrics. The results do not establish a universally best model; the preferred model depends on the business objective and the cost associated with each type of prediction error.
+Considering the above findings, KNN performed best in terms of default-class F1 Score among the examined models, whereas
+logistic regression performed best in several evaluation metrics.
 
 ## 10. Streamlit Application
 
